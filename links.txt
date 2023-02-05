@@ -1,3 +1,7 @@
 https://blog.bitsrc.io/create-react-app-without-create-react-app-b0a5806a92
 https://gist.github.com/rupeshtiwari/e7235addd5f52dc3e449672c4d8b88d5
 https://levelup.gitconnected.com/lets-build-a-boilerplate-with-react-and-webpack-eb2fbdb44283
+
+https://dev.to/amalv/set-up-storybook-using-typescript-material-ui-and-styled-components-fem
+https://zackphilipps.dev/posts/storybook-csf-mdx-known-issues-typescript-styled-components
+https://dev.to/iamrishupatel/how-to-create-a-react-component-library-using-storybook-typescript-scss-and-rollup-4pin

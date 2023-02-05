@@ -10,19 +10,20 @@ interface IHeaderPropsWithChildren {
     // props?: React.ReactPropTypes
 }
 
-interface IHeaderOwnProps extends IHeaderPropsWithChildren {
+export interface IHeaderOwnProps extends IHeaderPropsWithChildren {
 }
 
-interface IHeaderContainerOwnProps extends IHeaderOwnProps {
+export interface IHeaderContainerOwnProps extends IHeaderOwnProps {
+    height: number
 }
 
 const Header = ({ children }: IHeaderOwnProps) : React.ReactElement => {
     return <section>{children}</section>
 }
 
-Header.Container = ({ children }: IHeaderContainerOwnProps): React.ReactElement => {
+Header.Container = ({ children, ...restProps }: IHeaderContainerOwnProps): React.ReactElement => {
     return (
-        <Wrapper>
+        <Wrapper {...restProps}>
             {children}
         </Wrapper>
     )
