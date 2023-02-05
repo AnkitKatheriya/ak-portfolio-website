@@ -5,8 +5,9 @@
   "main": "./index.tsx",
   "private": true,
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server --open"
+    "build": "set NODE_ENV=development && webpack",
+    "start": "webpack-dev-server --open",
+    "start:watch": "webpack-dev-server --open --hot"
   },
   "keywords": [],
   "author": "",
@@ -32,8 +33,10 @@
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/styled-components": "^5.1.26",
     "@types/webpack": "^5.28.0",
     "babel-loader": "^9.1.2",
+    "babel-plugin-styled-components": "^2.0.7",
     "circular-dependency-plugin": "^5.2.2",
     "clean-webpack-plugin": "^4.0.0",
     "compression-webpack-plugin": "^10.0.0",
@@ -49,6 +52,7 @@
     "mini-css-extract-plugin": "^2.7.2",
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
+    "styled-components": "^5.3.6",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.5",
     "url-loader": "^4.1.1",

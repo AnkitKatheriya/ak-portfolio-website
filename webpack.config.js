@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CircularDependencyPlugin = require("circular-dependency-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const { CleanWebpackPlugin }  = require('clean-webpack-plugin')
+// const { CleanWebpackPlugin }  = require('clean-webpack-plugin')
 // const DeclarationBundlerPlugin = require('./declaration-bundler-webpack-plugin.fix')
 
 /*We are basically telling webpack to take index.js from entry. Then check for all file extensions in resolve. 
@@ -22,7 +22,7 @@ module.exports={
     /** "entry"
      * the entry point 
      */
-    entry: "./index.tsx", 
+    entry: ['webpack/hot/dev-server' , "./index.tsx"], 
     output: {
         /** "path"
          * the folder path of the output file 
@@ -32,7 +32,7 @@ module.exports={
         /** "filename"
          * the name of the output file 
          */
-        filename: "[name].js"
+        filename: debug ? "[name].js" : '[name].[contenthash].js',
     },
     /** "target"
      * setting "node" as target app (server side), and setting it as "web" is 
@@ -61,7 +61,14 @@ module.exports={
         /** "liveReload"
          * disable live reload on the browser. "hot" must be set to false for this to work
         */
-        liveReload: true
+        liveReload: true,
+        client: {
+          overlay: {
+            errors: true,
+            warnings: false,
+          },
+        },
+        compress: true,
     },
     resolve: {
         /** "extensions" 
@@ -82,7 +89,17 @@ module.exports={
             {
                 test: /\.(js|jsx)$/,    //kind of file extension this rule should look for and apply in test
                 exclude: /node_modules/, //folder to be excluded
-                use:  'babel-loader' //loader which we are going to use
+                loader: 'babel-loader',
+                options: {
+                  presets: [
+                    [
+                      '@babel/preset-react',
+                      {
+                        runtime: 'automatic',
+                      },
+                    ],
+                  ],
+                },
             },
             {
                 test: /\.(ts|tsx)$/,
@@ -137,7 +154,7 @@ module.exports={
     },
     devtool: debug ? 'source-map' : false,
     plugins: debug ? [
-        new CleanWebpackPlugin(),
+        // new CleanWebpackPlugin(),
         new CircularDependencyPlugin({
           // exclude detection of files based on a RegExp
           exclude: /a\.js|node_modules/,
@@ -156,7 +173,7 @@ module.exports={
         }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(), // Merge chunks
-        new CleanWebpackPlugin(),
+        // new CleanWebpackPlugin(),
         // extract imported css into own file
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output

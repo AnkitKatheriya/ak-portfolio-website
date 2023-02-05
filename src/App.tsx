@@ -1,8 +1,16 @@
+import {
+    Footer,
+    Header
+} from './components'
+
 const App = () => {
 return (
-    <h1>
-        Welcome to my portfolio website
-    </h1>
+    <>
+        <Header.Container>
+            For testing purpose
+        </Header.Container>
+        <Footer/>
+    </>
 )
 }
 
